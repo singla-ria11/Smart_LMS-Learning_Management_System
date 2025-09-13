@@ -9,6 +9,6 @@ const categrySchema = new Schema({
   },
 });
 
-const Course = mongoose.model("Category", categrySchema);
+const Category = mongoose.model("Category", categrySchema);
 
-export default Course;
+export default Category;

@@ -4,6 +4,9 @@ import dotenv from "dotenv";
 import morgan from "morgan";
 
 import connectDB from "./src/config/db.js";
+import authRouter from "./src/routes/authRoutes.js";
+import courseRouter from "./src/routes/courseRoutes.js";
+import categoryRouter from "./src/routes/categoryRoutes.js";
 
 dotenv.config(); // Load environment variables from .env
 connectDB(); // Connect to MongoDB
@@ -15,8 +18,13 @@ app.use(express.json());
 app.use(cors());
 
 if (process.env.NODE_ENV === "dev") {
-  app.use(morgan);
+  app.use(morgan("dev"));
 }
+
+app.use("/smartlms/api/auth", authRouter);
+app.use("/smartlms/api/course", courseRouter);
+app.use("/smartlms/api/category", categoryRouter);
+
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
