@@ -8,31 +8,19 @@
   {
     "name": "Anita Verma",
     "email": "anita.student@example.com",
-    "password": "password123",
+    "password": "password112",
     "role": "student"
   },
   {
     "name": "Neha Sharma",
     "email": "neha.instructor@example.com",
-    "password": "password123",
+    "password": "password789",
     "role": "instructor"
   },
   {
     "name": "Aman Singh",
     "email": "aman.student@example.com",
-    "password": "password123",
+    "password": "password101",
     "role": "student"
-  },
-  {
-    "name": "Priya Desai",
-    "email": "priya.student@example.com",
-    "password": "password123",
-    "role": "student"
-  },
-  {
-    "name": "Karan Joshi",
-    "email": "karan.instructor@example.com",
-    "password": "password123",
-    "role": "instructor"
   }
 ]

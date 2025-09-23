@@ -1,14 +1,28 @@
+import fs from "fs";
+import path from "path";
+import dotenv from "dotenv";
+import bcrypt from "bcrypt";
 import Category from "../src/models/CategoryModel.js";
 import Course from "../src/models/CourseModel.js";
 import User from "../src/models/userModel.js";
 
+dotenv.config();
+
+import connectDB from "../src/config/db.js";
+
+// connect to db
+connectDB();
+const __dirname = path.resolve();
+
 const importData = async () => {
   try {
-    console.log("Clearing database!");
+    // console.log("Clearing database!");
     // clear the database
-    await User.deleteMany();
-    await Course.deleteMany();
-    await Category.deleteMany();
+    // await User.deleteMany();
+    // await Course.deleteMany();
+    // await Category.deleteMany();
+
+    console.log("__dirname", __dirname);
 
     // insert users
     const usersData = JSON.parse(
@@ -17,7 +31,7 @@ const importData = async () => {
 
     const usersWithHashedPassword = usersData.map((user) => {
       const salt = bcrypt.genSaltSync(10);
-      const hashedPassword = bcrypt.hashSync(password, salt);
+      const hashedPassword = bcrypt.hashSync(user.password, salt);
 
       return {
         ...user,
@@ -29,6 +43,8 @@ const importData = async () => {
     const instructorUser = createdUsers.find(
       (user) => user.role === "instructor"
     );
+
+    console.log("instructorUser", instructorUser);
 
     // insert categories
     const categoriesdata = JSON.parse(
@@ -57,19 +73,22 @@ const importData = async () => {
     console.log("Error while adding data: ", error);
     process.exit(1);
   }
-
-  // remove data
-  const destroyData = () => {
-    // deleteMany queries will go here!
-    console.log("Data destroyed");
-    process.exit();
-  };
-
-  // logic to add script to run seed file for different methods
-  if (process.argv[2] === "-d") {
-    destroyData();
-  } else {
-    importData("import data");
-    console.log("import data");
-  }
 };
+
+// remove data
+const destroyData = async () => {
+  // clean the database
+  await User.deleteMany();
+  await Course.deleteMany();
+  await Category.deleteMany();
+  console.log("Data destroyed");
+  process.exit();
+};
+
+// logic to add script to run seed file for different methods
+if (process.argv[2] === "-d") {
+  destroyData();
+} else {
+  importData();
+  console.log("import data");
+}

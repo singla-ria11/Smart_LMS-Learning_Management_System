@@ -1,14 +1,14 @@
 [
     {
-    "name": "Web dev"
+        "name": "Web Dev"
     },
     {
-    "name": "Backend"
-}, 
-{
-    "name": "AI"
-}, 
-{
-    "name": "Mobile"
-}
+        "name": "Backend"
+    },
+    {
+        "name": "AI"
+    },
+    {
+        "name": "Mobile"
+    }
 ]
