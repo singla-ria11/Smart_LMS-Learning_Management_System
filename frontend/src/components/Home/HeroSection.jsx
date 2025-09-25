@@ -35,7 +35,7 @@ export default function HeroSection() {
               src={heroImg}
               alt="Learning Illustration"
               className="img-fluid"
-              style={{ maxHeight: "400px" }}
+              style={{ maxHeight: "350px" }}
             />
           </div>
         </div>

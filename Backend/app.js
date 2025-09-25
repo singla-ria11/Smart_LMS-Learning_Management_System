@@ -22,7 +22,7 @@ if (process.env.NODE_ENV === "dev") {
 }
 
 app.use("/smartlms/api/auth", authRouter);
-app.use("/smartlms/api/course", courseRouter);
+app.use("/smartlms/api/courses", courseRouter);
 app.use("/smartlms/api/category", categoryRouter);
 
 app.get("/", (req, res) => {
