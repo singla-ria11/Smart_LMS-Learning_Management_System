@@ -10,7 +10,7 @@ const FeaturedCourses = () => {
 
   // call the get courses api
   useEffect(() => {
-    // fetch the data using axios
+    // fetch the courses using axios
     const fetchCourses = async () => {
       try {
         const response = await axios.get(backendURL + "/smartlms/api/courses");
@@ -43,7 +43,7 @@ const FeaturedCourses = () => {
             {courses.map((course) => (
               <div className="col-md-4" key={course._id}>
                 <Link
-                  to={"/courses/" + course._id}
+                  to={"/course/" + course._id}
                   className="text-decoration-none text-dark"
                 >
                   <div className="card h-100 shadow-lg border-0 position-relative">
