@@ -7,6 +7,8 @@ import connectDB from "./src/config/db.js";
 import authRouter from "./src/routes/authRoutes.js";
 import courseRouter from "./src/routes/courseRoutes.js";
 import categoryRouter from "./src/routes/categoryRoutes.js";
+import paymentRouter from "./src/routes/paymentRoutes.js";
+import { authProtect } from "./src/middlewares/authMiddleware.js";
 
 dotenv.config(); // Load environment variables from .env
 connectDB(); // Connect to MongoDB
@@ -24,6 +26,7 @@ if (process.env.NODE_ENV === "dev") {
 app.use("/smartlms/api/auth", authRouter);
 app.use("/smartlms/api/courses", courseRouter);
 app.use("/smartlms/api/category", categoryRouter);
+app.use("/smartlms/api/payment", authProtect, paymentRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
