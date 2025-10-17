@@ -8,6 +8,7 @@ import Footer from "./components/layout/Footer.jsx";
 import CourseDetails from "./pages/CourseDetails.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import LearningPage from "./pages/LearningPage.jsx";
+import LessonPlayerPage from "./pages/LessonPlayerPage.jsx";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/course/:id" element={<CourseDetails />} />
         <Route element={<ProtectedRoute />}>
           <Route path="/learning" element={<LearningPage />} />
+          <Route path="/learn/courses/:id" element={<LessonPlayerPage />} />
         </Route>
       </Routes>
       <Footer />
