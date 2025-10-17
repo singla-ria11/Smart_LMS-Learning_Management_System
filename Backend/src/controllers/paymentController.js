@@ -1,6 +1,8 @@
-import stripe from "stripe";
+import Stripe from "stripe";
+import dotenv from "dotenv";
+dotenv.config();
 
-const Stripe = new stripe(process.env.STRIPE_SECRET_KEY)
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "");
 
 export const createPaymentIntent = async (req, res) => {
   const { amount } = req.body;
@@ -14,7 +16,7 @@ export const createPaymentIntent = async (req, res) => {
     };
 
     // create payment intent
-    const paymentIntent = await Stripe.paymentIntents.create(args);
+    const paymentIntent = await stripe.paymentIntents.create(args);
     // get client secret from intent
     console.log(paymentIntent.client_secret);
 
